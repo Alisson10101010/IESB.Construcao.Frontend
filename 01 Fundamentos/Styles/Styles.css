@@ -1,0 +1,72 @@
+body {
+    padding-bottom: 500px;
+}
+
+h2{
+    font-size: 22px;
+    color: blue;
+
+}
+
+h3{                      /*GERAL*/
+    color: red;
+}
+
+.Meu-Titulo{          /*SAO O MESMO PQ É O MSM NOME*/
+    color: rgb(12, 77, 3); 
+}
+
+#Ultimo-Titulo{         /*ESPECIFICO SO NESSE*/
+    color: violet;
+}
+
+.Fundo-azul{
+    background-color: springgreen;
+}
+
+.Texto-pequeno,#Meu-paragrafo{
+    color: rgb(90, 95, 12);
+}
+
+#Minha-div{
+    background-image: url(../assets/Tubarao.jpg);
+padding: 50px;
+}
+
+#Altura-largura {
+    height: 200px;
+    width: 200px;
+    background-color: brown;
+}
+
+#div-espacamento {
+    background-color: violet;
+    padding: 10px 20px 10px 20px;
+}
+
+#div-margem {
+    background-color: rgb(112, 3, 112);
+    margin: 10px 20px 10px 20px;
+}
+
+#div-borda {
+    background-color: rgb(76, 92, 136);
+    width: 200px;
+    height: 200px;
+    margin-top: 10px;
+    /*BORDER 3PX SOLID*/
+    border: 3px solid crimson; 
+}
+
+#div-arredondamento-borda {
+    background-color: rgb(25, 148, 0);
+    width: 200px;
+    height: 200px;
+    margin-top: 10px;
+    /*BORDER 3PX SOLID*/
+    border-radius: 15px; 
+}
+
+
+
+
