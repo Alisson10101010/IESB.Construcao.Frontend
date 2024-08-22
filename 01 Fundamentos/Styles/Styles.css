@@ -1,72 +1,50 @@
-body {
-    padding-bottom: 500px;
+*{
+    padding: 0%;
 }
 
+body{
+    padding-bottom: 500px;
+}
 h2{
     font-size: 22px;
     color: blue;
-
 }
-
-h3{                      /*GERAL*/
-    color: red;
+h3{
+    font-size: 22px;
+    color: rgb(255, 0, 0);
 }
-
-.Meu-Titulo{          /*SAO O MESMO PQ É O MSM NOME*/
-    color: rgb(12, 77, 3); 
+.meu-titulo{
+    color: rgb(0, 233, 0);
 }
-
-#Ultimo-Titulo{         /*ESPECIFICO SO NESSE*/
-    color: violet;
+#ultimo-titulo{
+color: rgb(8, 139, 253);          
 }
-
-.Fundo-azul{
-    background-color: springgreen;
+.fundo-azul{
+    background-color: aqua;
 }
-
-.Texto-pequeno,#Meu-paragrafo{
-    color: rgb(90, 95, 12);
+.texto-pequeno,#meu-paragrafo{
+    color: aqua;
 }
-
-#Minha-div{
-    background-image: url(../assets/Tubarao.jpg);
-padding: 50px;
+#minha-div{
+   background-image: url(../assests/images.png);
+   padding: 1px;
 }
-
-#Altura-largura {
-    height: 200px;
-    width: 200px;
-    background-color: brown;
+#altura-largura{
+    height: 20px;
+    width: 20px;
+    background-color: blueviolet;
 }
-
-#div-espacamento {
-    background-color: violet;
+#div-espaçamento{
+    background-color: aqua;
     padding: 10px 20px 10px 20px;
-}
-
-#div-margem {
-    background-color: rgb(112, 3, 112);
-    margin: 10px 20px 10px 20px;
-}
-
-#div-borda {
-    background-color: rgb(76, 92, 136);
     width: 200px;
     height: 200px;
-    margin-top: 10px;
-    /*BORDER 3PX SOLID*/
-    border: 3px solid crimson; 
 }
-
-#div-arredondamento-borda {
-    background-color: rgb(25, 148, 0);
+#div-borda{
+    background-color: aqua;
     width: 200px;
     height: 200px;
-    margin-top: 10px;
-    /*BORDER 3PX SOLID*/
-    border-radius: 15px; 
+    margin-top: 100px;
+    border: 12px solid crimson;
+    border-radius: 150px;
 }
-
-
-
-
