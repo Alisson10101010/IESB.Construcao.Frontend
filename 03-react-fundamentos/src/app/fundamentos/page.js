@@ -3,7 +3,8 @@
 import MeusComponente from './MeusComponente'
 import NumeroMaior from "./NumeroMaior";
 import NumeroAleatorio from "./NumeroAleatorio";
-import Cabecalho from './Cabecalho';
+import Cabecalho from "./Cabecalho"; 
+
 
 
 
