@@ -34,7 +34,7 @@ export default function page() {
                                     <Card.Title>{ator.name}</Card.Title>
                                 </Card.Body>
                                 <Card.Footer className='text-end'>
-                                    <Button href={"/atores/" + ator.id} >Detalhes</Button>
+                                    <Button href={"/atores/" + ator.id} >Detalhesss</Button>
                                 </Card.Footer>
                             </Card>
                         </Col>
