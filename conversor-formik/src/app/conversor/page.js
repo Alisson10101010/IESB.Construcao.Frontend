@@ -34,7 +34,7 @@ export default function page() {
   return (
     <Pagina titulo="Conversor de Moedas">
       <div>
-        <CardImg src='/conversor/moedas.avif'/>
+        <CardImg src='/conversor/moedas.jpg'/>
       </div>
        <Formik initialValues={{ valorReal: "" }} onSubmit={calcularConversao}>
         {({ values, handleChange, handleSubmit, handleReset }) => (
