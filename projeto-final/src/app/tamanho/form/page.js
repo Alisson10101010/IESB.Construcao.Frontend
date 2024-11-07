@@ -13,9 +13,6 @@ export default function TamanhoFormPage(props) {
   // router -> hook para navegação de telas
   const router = useRouter()
 
-  // Busca a lista de faculdades para usar no select
-  const faculdades = JSON.parse(localStorage.getItem('faculdades')) || []
-
   // Buscar a lista de tamanhos no localStorage, se não existir, inicializa uma lista vazia
   const tamanhos = JSON.parse(localStorage.getItem('tamanhos')) || []
 
@@ -47,23 +44,35 @@ export default function TamanhoFormPage(props) {
     router.push("/tamanhos")
   }
 
-  // Lista de Áreas
+  // Lista de categorias (Área)
   const listaAreas = [
-    "Pequeno",
-    "Médio",
-    "Grande",
-    "Extra Grande"
+    "Manga Longa",
+    "Manga Curta",
+    "Calça",
+    "Jaqueta",
+    "Vestido",
+    "Saia",
+    "Bermuda",
+    "Blusa"
   ]
 
-  // Campos do form e valores iniciais(default)
+  // Lista de faixas etárias
+  const listaFaixaEtaria = [
+    "Infantil",
+    "Adulto",
+    "Sênior"
+  ]
+
+  // Campos do form e valores iniciais (default)
   const initialValues = {
     nome: '',
     descricao: '',
     area: '',
-    duracao: '',
+    faixaEtaria: '',
+    tipoTecido: '',
+    cor: '',
+    estoque: '',
     status: '',
-    faculdade: '',
-    numModulos: '' // Novo campo
   }
 
   // Esquema de validação com Yup
@@ -71,10 +80,11 @@ export default function TamanhoFormPage(props) {
     nome: Yup.string().required("Campo obrigatório"),
     descricao: Yup.string().required("Campo obrigatório"),
     area: Yup.string().required("Campo obrigatório"),
-    duracao: Yup.number().min(1, "Duração inválida").required("Campo obrigatório"),  // Validação para duração
-    status: Yup.string().required("Campo obrigatório"),
-    faculdade: Yup.string().required("Campo obrigatório"),
-    numModulos: Yup.number().min(1, "Número de módulos inválido").required("Campo obrigatório")  // Validação para número de módulos
+    faixaEtaria: Yup.string().required("Campo obrigatório"),
+    tipoTecido: Yup.string().required("Campo obrigatório"),
+    cor: Yup.string().required("Campo obrigatório"),
+    estoque: Yup.number().min(1, "Estoque deve ser maior que 0").required("Campo obrigatório"),
+    status: Yup.string().required("Campo obrigatório")
   })
 
   return (
@@ -93,7 +103,7 @@ export default function TamanhoFormPage(props) {
               {/* Campos do form */}
               <Row className='mb-2'>
                 <Form.Group as={Col}>
-                <Form.Label>Nome:</Form.Label>
+                  <Form.Label>Nome:</Form.Label>
                   <Form.Control
                     name='nome'
                     type='text'
@@ -123,7 +133,7 @@ export default function TamanhoFormPage(props) {
 
               <Row className='mb-2'>
                 <Form.Group as={Col}>
-                  <Form.Label>Área:</Form.Label>
+                  <Form.Label>Área (Categoria):</Form.Label>
                   <Form.Select
                     name='area'
                     value={values.area}
@@ -139,22 +149,68 @@ export default function TamanhoFormPage(props) {
                 </Form.Group>
 
                 <Form.Group as={Col}>
-                  <Form.Label>Duração (em meses):</Form.Label>
-                  <Form.Control
-                    name='duracao'
-                    type='number'
-                    min={1}
-                    value={values.duracao}
+                  <Form.Label>Faixa Etária:</Form.Label>
+                  <Form.Select
+                    name='faixaEtaria'
+                    value={values.faixaEtaria}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    isValid={touched.duracao && !errors.duracao}
-                    isInvalid={touched.duracao && errors.duracao}
-                  />
-                  <Form.Control.Feedback type='invalid'>{errors.duracao}</Form.Control.Feedback>
+                    isValid={touched.faixaEtaria && !errors.faixaEtaria}
+                    isInvalid={touched.faixaEtaria && errors.faixaEtaria}
+                  >
+                    <option value=''>Selecione</option>
+                    {listaFaixaEtaria.map(faixa => <option key={faixa} value={faixa}>{faixa}</option>)}
+                  </Form.Select>
+                  <Form.Control.Feedback type='invalid'>{errors.faixaEtaria}</Form.Control.Feedback>
                 </Form.Group>
               </Row>
 
               <Row className='mb-2'>
+                <Form.Group as={Col}>
+                  <Form.Label>Tipo de Tecido:</Form.Label>
+                  <Form.Control
+                    name='tipoTecido'
+                    type='text'
+                    value={values.tipoTecido}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    isValid={touched.tipoTecido && !errors.tipoTecido}
+                    isInvalid={touched.tipoTecido && errors.tipoTecido}
+                  />
+                  <Form.Control.Feedback type='invalid'>{errors.tipoTecido}</Form.Control.Feedback>
+                </Form.Group>
+
+                <Form.Group as={Col}>
+                  <Form.Label>Cor:</Form.Label>
+                  <Form.Control
+                    name='cor'
+                    type='text'
+                    value={values.cor}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    isValid={touched.cor && !errors.cor}
+                    isInvalid={touched.cor && errors.cor}
+                  />
+                  <Form.Control.Feedback type='invalid'>{errors.cor}</Form.Control.Feedback>
+                </Form.Group>
+              </Row>
+
+              <Row className='mb-2'>
+                <Form.Group as={Col}>
+                  <Form.Label>Estoque:</Form.Label>
+                  <Form.Control
+                    name='estoque'
+                    type='number'
+                    min={1}
+                    value={values.estoque}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    isValid={touched.estoque && !errors.estoque}
+                    isInvalid={touched.estoque && errors.estoque}
+                  />
+                  <Form.Control.Feedback type='invalid'>{errors.estoque}</Form.Control.Feedback>
+                </Form.Group>
+
                 <Form.Group as={Col}>
                   <Form.Label>Status:</Form.Label>
                   <Form.Select
@@ -171,32 +227,11 @@ export default function TamanhoFormPage(props) {
                   </Form.Select>
                   <Form.Control.Feedback type='invalid'>{errors.status}</Form.Control.Feedback>
                 </Form.Group>
-
-                <Form.Group as={Col}>
-                  <Form.Label>Faculdade:</Form.Label>
-                  <Form.Select
-                    name='faculdade'
-                    value={values.faculdade}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    isValid={touched.faculdade && !errors.faculdade}
-                    isInvalid={touched.faculdade && errors.faculdade}
-                  >
-                    {faculdades.map(faculdade => <option key={faculdade.id} value={faculdade.nome}>{faculdade.nome}</option>)}
-                  </Form.Select>
-                  <Form.Control.Feedback type='invalid'>{errors.faculdade}</Form.Control.Feedback>
-                </Form.Group>
               </Row>
 
-              {/* Novo campo para número de módulos */}
-              
-
               {/* Botões */}
-
-              
-                  
               <Form.Group className='text-end'>
-                <Button className='me-2' href='/faculdades'><FaArrowLeft /> Voltar</Button>
+                <Button className='me-2' href='/tamanhos'><FaArrowLeft /> Voltar</Button>
                 <Button type='submit' variant='success'><FaCheck /> Enviar</Button>
               </Form.Group>
             </Form>

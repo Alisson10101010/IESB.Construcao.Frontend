@@ -6,45 +6,45 @@ import { Button, Card, Col, Row } from 'react-bootstrap'
 export default function HomePage() {
 
 
-  const faculdades = JSON.parse(localStorage.getItem("Tamanho")) || []
-  const cursos = JSON.parse(localStorage.getItem("Cor")) || []
-  const professores = JSON.parse(localStorage.getItem("Tipo de Corte")) || []
-  const disciplinas = JSON.parse(localStorage.getItem("Material")) || []
-  const alunos = JSON.parse(localStorage.getItem("Estilo")) || []
+  const tamanho = JSON.parse(localStorage.getItem("Tamanho")) || []
+  const categorias = JSON.parse(localStorage.getItem("categorias")) || []
+  const TipodeRoupasPreferidas = JSON.parse(localStorage.getItem("Tipo de Roupas Preferidas")) || []
+  const moda = JSON.parse(localStorage.getItem("moda")) || []
+  const orcamento = JSON.parse(localStorage.getItem("orcamento")) || []
 
   const lista = [
     {
-      nome: "DOIDINHA",
-      imagem: "https://i.pinimg.com/736x/f9/5a/f8/f95af8037722f02b8eb1f4547d760c62.jpg", quantidade: faculdades.length,
-      link: "/faculdades"
+      nome: "Cadastre seu tamanho.",
+      imagem: "https://i.pinimg.com/736x/a6/93/72/a693723992ecf8e1921a1414a1458508.jpg", quantidade: tamanho.length,
+      link: "/tamanho"
     },
     {
-      nome: "GATOES",
-      imagem: "https://thegraphicsfairy.com/wp-content/uploads/2023/08/Halloween-Cat-Candle-NV-GraphicsFairy.jpg", quantidade: cursos.length,
-      link: "/cursos"
+      nome: "Qual seu estilo?",
+      imagem: "https://i.pinimg.com/564x/58/13/1e/58131e617f2433a97d39342295899680.jpg", quantidade: categorias.length,
+      link: "/Categorias"
     },
     {
-      nome: "CORTESS",
-      imagem: "https://i.pinimg.com/736x/39/09/fb/3909fb65bbab271bb5a9ddbf85c80d00.jpg", quantidade: professores.length,
-      link: "/professores"
+      nome: "Novidades!⭐",
+      imagem: "https://i.pinimg.com/736x/67/55/ae/6755ae151df69ba919341f6a1279a826.jpg", quantidade: TipodeRoupasPreferidas.length,
+      link: "/Tipo de Roupas Preferidas"
     },
     {
-      nome: "Disciplinas",
-      imagem: "https://i.pinimg.com/236x/79/0f/fc/790ffceeb183a1059b77c5558342ffc0.jpg", quantidade: disciplinas.length,
-      link: "/disciplinas"
+      nome: "Estilo de Moda",
+      imagem: "https://i.pinimg.com/564x/fb/d4/64/fbd4645a18cdaa247e94713fdb1c93e3.jpg", quantidade: moda.length,
+      link: "/Estilo de Moda"
     },
     {
-      nome: "Alunos",
-      imagem: "https://i.pinimg.com/564x/b7/5f/18/b75f18a5c6949c9ae45a09f2e12755f3.jpg", quantidade: alunos.length,
-      link: "/alunos"
+      nome: "Preferências de Preço / Orçamento",
+      imagem: "https://i.pinimg.com/564x/f1/22/4b/f1224b81d7b7793c09b11b69fcdd5473.jpg", quantidade: orcamento.length,
+      link: "/Preferências de Preço / Orçamento"
     },
   ]
 
 
 
   return (
-    <Pagina titulo={"Cores & Formas"}>   
-      <Row md={4}>
+    <Pagina titulo={"Morena Rosa"}>   
+      <Row md={5}>
         {lista.map(item => (
           <Col className='py-2'>
             <Card style={{height: '100%'}}>
