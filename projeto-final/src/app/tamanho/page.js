@@ -33,7 +33,7 @@ export default function TamanhoPage() {
   }
 
   return (
-    <Pagina titulo={"Tamanhos"}>
+    <Pagina titulo={"Cadastro de clientes"}>
       <div className='text-end mb-2'>
         <Button href='/tamanho/form'><FaPlusCircle /> Novo</Button>
       </div>

@@ -8,57 +8,56 @@ import { FaArrowLeft, FaCheck } from "react-icons/fa"
 import { v4 } from 'uuid'
 import * as Yup from 'yup'
 
-export default function TamanhoFormPage(props) {
+export default function FuncionarioFormPage(props) {
 
   // router -> hook para navegação de telas
   const router = useRouter()
 
-  // Buscar a lista de tamanhos no localStorage, se não existir, inicializa uma lista vazia
-  const tamanhos = JSON.parse(localStorage.getItem('tamanhos')) || []
+  // Buscar a lista de funcionários no localStorage, se não existir, inicializa uma lista vazia
+  const funcionarios = JSON.parse(localStorage.getItem('funcionarios')) || []
 
   // Recuperando id para edição
   const id = props.searchParams.id
   console.log(props.searchParams.id)
-  // Buscar na lista o tamanho com o ID recebido no parametro
-  const tamanhoEditado = tamanhos.find(item => item.id == id)
-  console.log(tamanhoEditado)
+  // Buscar na lista o funcionário com o ID recebido no parametro
+  const funcionarioEditado = funcionarios.find(item => item.id == id)
+  console.log(funcionarioEditado)
 
-  // função para salvar os dados do form
+  // Função para salvar os dados do form
   function salvar(dados) {
-    // Se tamanhoEditado existe, mudar os dados e gravar no localStorage
-    if (tamanhoEditado) {
-      Object.assign(tamanhoEditado, dados)
+    // Se funcionarioEditado existe, mudar os dados e gravar no localStorage
+    if (funcionarioEditado) {
+      Object.assign(funcionarioEditado, dados)
       // Substitui a lista antiga pela nova no localStorage
-      localStorage.setItem('tamanhos', JSON.stringify(tamanhos))
+      localStorage.setItem('funcionarios', JSON.stringify(funcionarios))
     } else {
-      // se tamanhoEditado não existe, é criação de um novo
-      // gerar um ID (Identificador unico)
+      // Se funcionarioEditado não existe, é criação de um novo
+      // Gerar um ID (Identificador único)
       dados.id = v4()
-      // Adiciona o novo tamanho na lista de tamanhos
-      tamanhos.push(dados)
+      // Adiciona o novo funcionário na lista de funcionários
+      funcionarios.push(dados)
       // Substitui a lista antiga pela nova no localStorage
-      localStorage.setItem('tamanhos', JSON.stringify(tamanhos))
+      localStorage.setItem('funcionarios', JSON.stringify(funcionarios))
     }
 
-    alert("Tamanho salvo com sucesso!")
-    router.push("/tamanhos")
+    alert("Funcionário salvo com sucesso!")
+    router.push("/funcionarios")
   }
 
-  // Lista de categorias (Área)
-  const listaAreas = [
-    "Manga Longa",
-    "Manga Curta",
-    "Calça",
-    "Jaqueta",
-    "Vestido",
-    "Saia",
-    "Bermuda",
-    "Blusa"
+  // Lista de cargos
+  const listaCargos = [
+    "Gerente",
+    "Assistente",
+    "Vendedor",
+    "Estagiário",
+    "Supervisor",
+    "Coordenador",
+    "Atendente"
   ]
 
   // Lista de faixas etárias
   const listaFaixaEtaria = [
-    "Infantil",
+    "Jovem",
     "Adulto",
     "Sênior"
   ]
@@ -67,11 +66,10 @@ export default function TamanhoFormPage(props) {
   const initialValues = {
     nome: '',
     descricao: '',
-    area: '',
+    cargo: '',
     faixaEtaria: '',
-    tipoTecido: '',
-    cor: '',
-    estoque: '',
+    tipoContrato: '',
+    salario: '',
     status: '',
   }
 
@@ -79,21 +77,20 @@ export default function TamanhoFormPage(props) {
   const validationSchema = Yup.object().shape({
     nome: Yup.string().required("Campo obrigatório"),
     descricao: Yup.string().required("Campo obrigatório"),
-    area: Yup.string().required("Campo obrigatório"),
+    cargo: Yup.string().required("Campo obrigatório"),
     faixaEtaria: Yup.string().required("Campo obrigatório"),
-    tipoTecido: Yup.string().required("Campo obrigatório"),
-    cor: Yup.string().required("Campo obrigatório"),
-    estoque: Yup.number().min(1, "Estoque deve ser maior que 0").required("Campo obrigatório"),
+    tipoContrato: Yup.string().required("Campo obrigatório"),
+    salario: Yup.number().min(1, "Salário deve ser maior que 0").required("Campo obrigatório"),
     status: Yup.string().required("Campo obrigatório")
   })
 
   return (
-    <Pagina titulo={"Cadastro de Tamanho"}>
+    <Pagina titulo={"Cadastro de Funcionário"}>
 
       {/* Formulário */}
 
       <Formik
-        initialValues={tamanhoEditado || initialValues}
+        initialValues={funcionarioEditado || initialValues}
         validationSchema={validationSchema}
         onSubmit={salvar}
       >
@@ -133,19 +130,19 @@ export default function TamanhoFormPage(props) {
 
               <Row className='mb-2'>
                 <Form.Group as={Col}>
-                  <Form.Label>Área (Categoria):</Form.Label>
+                  <Form.Label>Cargo:</Form.Label>
                   <Form.Select
-                    name='area'
-                    value={values.area}
+                    name='cargo'
+                    value={values.cargo}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    isValid={touched.area && !errors.area}
-                    isInvalid={touched.area && errors.area}
+                    isValid={touched.cargo && !errors.cargo}
+                    isInvalid={touched.cargo && errors.cargo}
                   >
                     <option value=''>Selecione</option>
-                    {listaAreas.map(area => <option key={area} value={area}>{area}</option>)}
+                    {listaCargos.map(cargo => <option key={cargo} value={cargo}>{cargo}</option>)}
                   </Form.Select>
-                  <Form.Control.Feedback type='invalid'>{errors.area}</Form.Control.Feedback>
+                  <Form.Control.Feedback type='invalid'>{errors.cargo}</Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group as={Col}>
@@ -167,50 +164,36 @@ export default function TamanhoFormPage(props) {
 
               <Row className='mb-2'>
                 <Form.Group as={Col}>
-                  <Form.Label>Tipo de Tecido:</Form.Label>
+                  <Form.Label>Tipo de Contrato:</Form.Label>
                   <Form.Control
-                    name='tipoTecido'
+                    name='tipoContrato'
                     type='text'
-                    value={values.tipoTecido}
+                    value={values.tipoContrato}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    isValid={touched.tipoTecido && !errors.tipoTecido}
-                    isInvalid={touched.tipoTecido && errors.tipoTecido}
+                    isValid={touched.tipoContrato && !errors.tipoContrato}
+                    isInvalid={touched.tipoContrato && errors.tipoContrato}
                   />
-                  <Form.Control.Feedback type='invalid'>{errors.tipoTecido}</Form.Control.Feedback>
+                  <Form.Control.Feedback type='invalid'>{errors.tipoContrato}</Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group as={Col}>
-                  <Form.Label>Cor:</Form.Label>
+                  <Form.Label>Salário:</Form.Label>
                   <Form.Control
-                    name='cor'
-                    type='text'
-                    value={values.cor}
+                    name='salario'
+                    type='number'
+                    min={1}
+                    value={values.salario}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    isValid={touched.cor && !errors.cor}
-                    isInvalid={touched.cor && errors.cor}
+                    isValid={touched.salario && !errors.salario}
+                    isInvalid={touched.salario && errors.salario}
                   />
-                  <Form.Control.Feedback type='invalid'>{errors.cor}</Form.Control.Feedback>
+                  <Form.Control.Feedback type='invalid'>{errors.salario}</Form.Control.Feedback>
                 </Form.Group>
               </Row>
 
               <Row className='mb-2'>
-                <Form.Group as={Col}>
-                  <Form.Label>Estoque:</Form.Label>
-                  <Form.Control
-                    name='estoque'
-                    type='number'
-                    min={1}
-                    value={values.estoque}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    isValid={touched.estoque && !errors.estoque}
-                    isInvalid={touched.estoque && errors.estoque}
-                  />
-                  <Form.Control.Feedback type='invalid'>{errors.estoque}</Form.Control.Feedback>
-                </Form.Group>
-
                 <Form.Group as={Col}>
                   <Form.Label>Status:</Form.Label>
                   <Form.Select
@@ -231,7 +214,7 @@ export default function TamanhoFormPage(props) {
 
               {/* Botões */}
               <Form.Group className='text-end'>
-                <Button className='me-2' href='/tamanho'><FaArrowLeft /> Voltar</Button>
+                <Button className='me-2' href='/funcionarios'><FaArrowLeft /> Voltar</Button>
                 <Button type='submit' variant='success'><FaCheck /> Enviar</Button>
               </Form.Group>
             </Form>

@@ -6,8 +6,8 @@ import { Button, Card, Col, Row } from 'react-bootstrap'
 export default function HomePage() {
 
 
-  const tamanho = JSON.parse(localStorage.getItem("Tamanho")) || []
-  const categorias = JSON.parse(localStorage.getItem("categorias")) || []
+  const clientes = JSON.parse(localStorage.getItem("clientes")) || []
+  const funcionarios = JSON.parse(localStorage.getItem("funcionarios")) || []
   const TipodeRoupasPreferidas = JSON.parse(localStorage.getItem("Tipo de Roupas Preferidas")) || []
   const moda = JSON.parse(localStorage.getItem("moda")) || []
   const orcamento = JSON.parse(localStorage.getItem("orcamento")) || []
@@ -15,13 +15,13 @@ export default function HomePage() {
   const lista = [
     {
       nome: "Cadastre seu tamanho.",
-      imagem: "https://i.pinimg.com/736x/a6/93/72/a693723992ecf8e1921a1414a1458508.jpg", quantidade: tamanho.length,
+      imagem: "https://i.pinimg.com/736x/a6/93/72/a693723992ecf8e1921a1414a1458508.jpg", quantidade: clientes.length,
       link: "/tamanho"
     },
     {
       nome: "Qual seu estilo?",
-      imagem: "https://i.pinimg.com/564x/58/13/1e/58131e617f2433a97d39342295899680.jpg", quantidade: categorias.length,
-      link: "/Categorias"
+      imagem: "https://i.pinimg.com/564x/58/13/1e/58131e617f2433a97d39342295899680.jpg", quantidade: funcionarios.length,
+      link: "/funcionarios"
     },
     {
       nome: "Novidades!⭐",
@@ -30,7 +30,7 @@ export default function HomePage() {
     },
     {
       nome: "Estilo de Moda",
-      imagem: "https://i.pinimg.com/564x/fb/d4/64/fbd4645a18cdaa247e94713fdb1c93e3.jpg", quantidade: moda.length,
+      imagem: "https://i.pinimg.com/736x/93/da/d6/93dad681ac78a9f0062fb35c6d9a4b90.jpg", quantidade: moda.length,
       link: "/Estilo de Moda"
     },
     {
