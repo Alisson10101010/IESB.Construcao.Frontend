@@ -8,66 +8,50 @@ import { FaArrowLeft, FaCheck } from "react-icons/fa"
 import { v4 } from 'uuid'
 import * as Yup from 'yup'
 
-export default function TamanhoFormPage(props) {
+export default function EstoqueFormPage(props) {
 
-  // router -> hook para navegação de telas
   const router = useRouter()
 
-  // Buscar a lista de tamanhos no localStorage, se não existir, inicializa uma lista vazia
-  const tamanhos = JSON.parse(localStorage.getItem('tamanhos')) || []
+  // Buscar a lista de itens no estoque no localStorage, se não existir, inicializa uma lista vazia
+  const estoque = JSON.parse(localStorage.getItem('estoque')) || []
 
   // Recuperando id para edição
   const id = props.searchParams.id
-  console.log(props.searchParams.id)
-  // Buscar na lista o tamanho com o ID recebido no parametro
-  const tamanhoEditado = tamanhos.find(item => item.id == id)
-  console.log(tamanhoEditado)
 
-  // função para salvar os dados do form
+  // Buscar na lista o item com o ID recebido no parametro
+  const itemEditado = estoque.find(item => item.id == id)
+
+  // Função para salvar os dados do form
   function salvar(dados) {
-    // Se tamanhoEditado existe, mudar os dados e gravar no localStorage
-    if (tamanhoEditado) {
-      Object.assign(tamanhoEditado, dados)
+    if (itemEditado) {
+      Object.assign(itemEditado, dados)
       // Substitui a lista antiga pela nova no localStorage
-      localStorage.setItem('tamanhos', JSON.stringify(tamanhos))
+      localStorage.setItem('estoque', JSON.stringify(estoque))
     } else {
-      // se tamanhoEditado não existe, é criação de um novo
-      // gerar um ID (Identificador unico)
       dados.id = v4()
-      // Adiciona o novo tamanho na lista de tamanhos
-      tamanhos.push(dados)
-      // Substitui a lista antiga pela nova no localStorage
-      localStorage.setItem('tamanhos', JSON.stringify(tamanhos))
+      estoque.push(dados)
+      localStorage.setItem('estoque', JSON.stringify(estoque))
     }
 
-    alert("Tamanho salvo com sucesso!")
-    router.push("/tamanhos")
+    alert("Item do estoque salvo com sucesso!")
+    router.push("/estoque")
   }
 
-  // Lista de categorias (Área)
-  const listaAreas = [
-    "Manga Longa",
-    "Manga Curta",
-    "Calça",
-    "Jaqueta",
-    "Vestido",
-    "Saia",
-    "Bermuda",
-    "Blusa"
+  // Lista de tipos de roupas
+  const listaTipos = [
+    "Camisa", "Blusa", "Saia", "Vestido", "Calça", "Jaqueta", "Sapato", "Bermuda", "Jaqueta"
   ]
 
   // Lista de faixas etárias
   const listaFaixaEtaria = [
-    "Infantil",
-    "Adulto",
-    "Sênior"
+    "Infantil", "Adulto", "Sênior"
   ]
 
   // Campos do form e valores iniciais (default)
   const initialValues = {
     nome: '',
     descricao: '',
-    area: '',
+    tipo: '',
     faixaEtaria: '',
     tipoTecido: '',
     cor: '',
@@ -79,7 +63,7 @@ export default function TamanhoFormPage(props) {
   const validationSchema = Yup.object().shape({
     nome: Yup.string().required("Campo obrigatório"),
     descricao: Yup.string().required("Campo obrigatório"),
-    area: Yup.string().required("Campo obrigatório"),
+    tipo: Yup.string().required("Campo obrigatório"),
     faixaEtaria: Yup.string().required("Campo obrigatório"),
     tipoTecido: Yup.string().required("Campo obrigatório"),
     cor: Yup.string().required("Campo obrigatório"),
@@ -88,12 +72,11 @@ export default function TamanhoFormPage(props) {
   })
 
   return (
-    <Pagina titulo={"Cadastro de Tamanho"}>
+    <Pagina titulo={"Cadastro de Item no Estoque"}>
 
       {/* Formulário */}
-
       <Formik
-        initialValues={tamanhoEditado || initialValues}
+        initialValues={itemEditado || initialValues}
         validationSchema={validationSchema}
         onSubmit={salvar}
       >
@@ -103,7 +86,7 @@ export default function TamanhoFormPage(props) {
               {/* Campos do form */}
               <Row className='mb-2'>
                 <Form.Group as={Col}>
-                  <Form.Label>Nome:</Form.Label>
+                  <Form.Label>Nome do Produto:</Form.Label>
                   <Form.Control
                     name='nome'
                     type='text'
@@ -117,7 +100,7 @@ export default function TamanhoFormPage(props) {
                 </Form.Group>
 
                 <Form.Group as={Col}>
-                  <Form.Label>Descrição:</Form.Label>
+                  <Form.Label>Descrição do Produto:</Form.Label>
                   <Form.Control
                     name='descricao'
                     type='text'
@@ -133,19 +116,19 @@ export default function TamanhoFormPage(props) {
 
               <Row className='mb-2'>
                 <Form.Group as={Col}>
-                  <Form.Label>Área (Categoria):</Form.Label>
+                  <Form.Label>Tipo de Produto:</Form.Label>
                   <Form.Select
-                    name='area'
-                    value={values.area}
+                    name='tipo'
+                    value={values.tipo}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    isValid={touched.area && !errors.area}
-                    isInvalid={touched.area && errors.area}
+                    isValid={touched.tipo && !errors.tipo}
+                    isInvalid={touched.tipo && errors.tipo}
                   >
                     <option value=''>Selecione</option>
-                    {listaAreas.map(area => <option key={area} value={area}>{area}</option>)}
+                    {listaTipos.map(tipo => <option key={tipo} value={tipo}>{tipo}</option>)}
                   </Form.Select>
-                  <Form.Control.Feedback type='invalid'>{errors.area}</Form.Control.Feedback>
+                  <Form.Control.Feedback type='invalid'>{errors.tipo}</Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group as={Col}>
@@ -197,11 +180,10 @@ export default function TamanhoFormPage(props) {
 
               <Row className='mb-2'>
                 <Form.Group as={Col}>
-                  <Form.Label>Estoque:</Form.Label>
+                  <Form.Label>Estoque Disponível:</Form.Label>
                   <Form.Control
                     name='estoque'
                     type='number'
-                    min={1}
                     value={values.estoque}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -222,8 +204,8 @@ export default function TamanhoFormPage(props) {
                     isInvalid={touched.status && errors.status}
                   >
                     <option value=''>Selecione</option>
-                    <option value="Ativo">Ativo</option>
-                    <option value="Inativo">Inativo</option>
+                    <option value="Disponível">Disponível</option>
+                    <option value="Indisponível">Indisponível</option>
                   </Form.Select>
                   <Form.Control.Feedback type='invalid'>{errors.status}</Form.Control.Feedback>
                 </Form.Group>
@@ -231,7 +213,7 @@ export default function TamanhoFormPage(props) {
 
               {/* Botões */}
               <Form.Group className='text-end'>
-                <Button className='me-2' href='/tamanho'><FaArrowLeft /> Voltar</Button>
+                <Button className='me-2' href='/estoque'><FaArrowLeft /> Voltar</Button>
                 <Button type='submit' variant='success'><FaCheck /> Enviar</Button>
               </Form.Group>
             </Form>
