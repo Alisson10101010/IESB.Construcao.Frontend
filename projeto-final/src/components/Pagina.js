@@ -1,6 +1,5 @@
-'use client'
-
-import { Container, Nav, Navbar } from "react-bootstrap"
+import { Container, Nav, Navbar } from "react-bootstrap";
+import { FaUsers, FaWarehouse, FaBoxOpen, FaStoreAlt, FaTruck } from "react-icons/fa";
 
 export default function Pagina({ titulo, children }) {
   return (
@@ -14,11 +13,21 @@ export default function Pagina({ titulo, children }) {
           <Navbar.Toggle aria-controls="navbar-nav" />
           <Navbar.Collapse id="navbar-nav">
             <Nav className="ms-auto">
-              <Nav.Link href="/clientes" className="nav-link-custom">Clientes</Nav.Link>
-              <Nav.Link href="/funcionarios" className="nav-link-custom">Funcionários</Nav.Link>
-              <Nav.Link href="/estoque" className="nav-link-custom">Estoque</Nav.Link>
-              <Nav.Link href="/vendas" className="nav-link-custom">Vendas</Nav.Link>
-              <Nav.Link href="/fornecedor" className="nav-link-custom">Fornecedores</Nav.Link>
+              <Nav.Link href="/clientes" className="nav-link-custom">
+                <FaUsers className="me-2" /> Clientes
+              </Nav.Link>
+              <Nav.Link href="/funcionarios" className="nav-link-custom">
+                <FaStoreAlt className="me-2" /> Funcionários
+              </Nav.Link>
+              <Nav.Link href="/estoque" className="nav-link-custom">
+                <FaWarehouse className="me-2" /> Estoque
+              </Nav.Link>
+              <Nav.Link href="/vendas" className="nav-link-custom">
+                <FaBoxOpen className="me-2" /> Vendas
+              </Nav.Link>
+              <Nav.Link href="/fornecedor" className="nav-link-custom">
+                <FaTruck className="me-2" /> Fornecedores
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -39,6 +48,8 @@ export default function Pagina({ titulo, children }) {
           color: #ddd !important;
           font-weight: 500;
           transition: all 0.3s ease;
+          display: flex;
+          align-items: center;
         }
 
         .nav-link-custom:hover {
@@ -54,7 +65,11 @@ export default function Pagina({ titulo, children }) {
           font-size: 1.5rem;
           letter-spacing: 1px;
         }
+
+        .me-2 {
+          margin-right: 0.5rem;
+        }
       `}</style>
     </>
-  )
+  );
 }
