@@ -8,7 +8,7 @@ import { FaArrowLeft, FaCheck } from "react-icons/fa"
 import { v4 } from 'uuid'
 import * as Yup from 'yup'
 
-// Função para verificar se o nome está no plural
+
 function isPlural(nome) {
   return nome.trim().endsWith('s');
 }
@@ -19,10 +19,10 @@ export default function ClienteFormPage(props) {
   const id = props.searchParams.id;
   const clienteEditado = clientes.find(item => item.id == id);
   
-  // Produto pode ser passado como uma propriedade, por exemplo
-  const produto = "Clientes"; // Exemplo de produto no plural
+  
+  const produto = "Clientes"; 
 
-  // Lógica para definir rótulos no plural ou singular
+  
   const pluralOuSingular = isPlural(produto) ? 'clientes' : 'cliente';
   const pluralOuSingularCaps = pluralOuSingular.charAt(0).toUpperCase() + pluralOuSingular.slice(1);
 
@@ -43,23 +43,23 @@ export default function ClienteFormPage(props) {
   const initialValues = {
     nome: '',
     cpf: '',
-    cargo: '',
+    sexo: '',
     endereco: '',
     telefone: '',
     email: '',
     status: '',
-    dataAdmissao: '',
+    primeiracompra: '',
   };
 
   const validationSchema = Yup.object().shape({
     nome: Yup.string().required("Campo obrigatório"),
     cpf: Yup.string().required("Campo obrigatório"),
-    cargo: Yup.string().required("Campo obrigatório"),
+    sexo: Yup.string().required("Campo obrigatório"),
     endereco: Yup.string().required("Campo obrigatório"),
     telefone: Yup.string().required("Campo obrigatório"),
     email: Yup.string().email("Email inválido").required("Campo obrigatório"),
     status: Yup.string().required("Campo obrigatório"),
-    dataAdmissao: Yup.date().required("Campo obrigatório"),
+    primeiracompra: Yup.date().required("Campo obrigatório"),
   });
 
   return (
@@ -104,17 +104,17 @@ export default function ClienteFormPage(props) {
 
             <Row className='mb-2'>
               <Form.Group as={Col}>
-                <Form.Label>{`Cargo do ${pluralOuSingularCaps}:`}</Form.Label>
+                <Form.Label>{`Sexo do ${pluralOuSingularCaps}:`}</Form.Label>
                 <Form.Control
-                  name='cargo'
+                  name='sexo'
                   type='text'
-                  value={values.cargo}
+                  value={values.sexo}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  isValid={touched.cargo && !errors.cargo}
-                  isInvalid={touched.cargo && errors.cargo}
+                  isValid={touched.sexo && !errors.sexo}
+                  isInvalid={touched.sexo && errors.sexo}
                 />
-                <Form.Control.Feedback type='invalid'>{errors.cargo}</Form.Control.Feedback>
+                <Form.Control.Feedback type='invalid'>{errors.sexo}</Form.Control.Feedback>
               </Form.Group>
 
               <Form.Group as={Col}>
@@ -181,17 +181,17 @@ export default function ClienteFormPage(props) {
               </Form.Group>
 
               <Form.Group as={Col}>
-                <Form.Label>{`Data de Admissão do ${pluralOuSingularCaps}:`}</Form.Label>
+                <Form.Label>{`Primeira Compra do ${pluralOuSingularCaps}:`}</Form.Label>
                 <Form.Control
-                  name='dataAdmissao'
+                  name='primeiraCompra'
                   type='date'
-                  value={values.dataAdmissao}
+                  value={values.primeiraCompra}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  isValid={touched.dataAdmissao && !errors.dataAdmissao}
-                  isInvalid={touched.dataAdmissao && errors.dataAdmissao}
+                  isValid={touched.primeiraCompra && !errors.primeiraCompra}
+                  isInvalid={touched.primeiraCompra && errors.primeiraCompra}
                 />
-                <Form.Control.Feedback type='invalid'>{errors.dataAdmissao}</Form.Control.Feedback>
+                <Form.Control.Feedback type='invalid'>{errors.primeiraCompra}</Form.Control.Feedback>
               </Form.Group>
             </Row>
 

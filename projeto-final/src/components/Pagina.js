@@ -8,7 +8,7 @@ export default function Pagina({ titulo, children }) {
       <Navbar bg="dark" variant="dark" expand="lg" className="shadow-lg">
         <Container>
           <Navbar.Brand href="/" className="fw-bold text-light">
-            Loja de Roupas
+            Home
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbar-nav" />
           <Navbar.Collapse id="navbar-nav">
@@ -33,12 +33,14 @@ export default function Pagina({ titulo, children }) {
         </Container>
       </Navbar>
 
-      {/* Barra de Título - Cor de fundo vermelha clara */}
+      {/* Barra de Título - Cor de fundo rosa clara */}
+
       <div className="text-center text-white py-3" style={{ backgroundColor: '#f8a1c4' }}>
         <h1>{titulo}</h1>
       </div>
 
-      {/* Conteudo da Página */}
+      {/*  Página */}
+
       <Container className="mt-4">
         {children}
       </Container>

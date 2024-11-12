@@ -35,7 +35,7 @@ export default function ClientePage() {
   return (
     <Pagina titulo={"Cadastro de clientes"}>
       <div className='text-end mb-2'>
-        <Button href='/clientes/form'><FaPlusCircle /> Novo</Button>
+        <Button href='/clientes/form'><FaPlusCircle /> Novo</Button> 
       </div>
 
       {/* Tabela com os Clientes */}
@@ -49,7 +49,7 @@ export default function ClientePage() {
             <th>Telefone</th>
             <th>Email</th>
             <th>Status</th>
-            <th>Data de Nascimento</th>
+            <th>Primeira Compra</th>
           </tr>
         </thead>
         <tbody>
@@ -63,7 +63,7 @@ export default function ClientePage() {
                 <td>{cliente.telefone}</td>
                 <td>{cliente.email}</td>
                 <td>{cliente.status}</td>
-                <td>{cliente.datadenascimento}</td>
+                <td>{cliente.primeiracompra}</td>
 
                 <td className='text-center'>
                   {/* Botões das ações */}

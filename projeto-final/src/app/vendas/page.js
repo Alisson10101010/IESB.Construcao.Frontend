@@ -9,24 +9,24 @@ export default function VendasPage() {
 
   const [vendas, setVendas] = useState([])
 
-  // Faz alguma coisa quando o usuário acessa a tela
+  // Interação quando o usuário acessa a tela
   useEffect(() => {
-    // Busca a lista do localStorage, se não existir, inicia uma vazia
+    // Busca a lista do localStorage
     const vendasLocalStorage = JSON.parse(localStorage.getItem("vendas")) || []
-    // guarda a lista no estado vendas
+    
     setVendas(vendasLocalStorage)
     console.log(vendasLocalStorage)
   }, [])
 
-  // Função para exclusão da venda
+  
   function excluir(venda) {
-    // Confirma com o usuário a exclusão
+    
     if (window.confirm(`Deseja realmente excluir a venda do pedido ${venda.numeroPedido}?`)) {
-      // filtra a lista antiga removendo a venda recebida
+      
       const novaLista = vendas.filter(v => v.id !== venda.id)
-      // grava no localStorage a nova lista
+      
       localStorage.setItem('vendas', JSON.stringify(novaLista))
-      // grava a nova lista no estado para renderizar na tela
+    
       setVendas(novaLista)
       alert("Venda excluída com sucesso!")
     }

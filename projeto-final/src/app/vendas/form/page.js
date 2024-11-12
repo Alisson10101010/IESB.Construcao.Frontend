@@ -12,7 +12,7 @@ export default function VendasFormPage(props) {
 
   const router = useRouter()
 
-  // Buscar a lista de vendas no localStorage, se não existir, inicializa uma lista vazia
+  // Buscar a lista de vendas 
   const vendas = JSON.parse(localStorage.getItem('vendas')) || []
 
   // Recuperando id para edição
@@ -25,7 +25,7 @@ export default function VendasFormPage(props) {
   function salvar(dados) {
     if (vendaEditada) {
       Object.assign(vendaEditada, dados)
-      // Substitui a lista antiga pela nova no localStorage
+      
       localStorage.setItem('vendas', JSON.stringify(vendas))
     } else {
       dados.id = v4()
@@ -37,7 +37,6 @@ export default function VendasFormPage(props) {
     router.push("/vendas")
   }
 
-  // Lista de clientes (para fins de exemplo, você pode carregar de um localStorage ou API)
   const listaClientes = [
     "João Silva", "Maria Oliveira", "Carlos Souza", "Ana Costa"
   ]
@@ -82,7 +81,9 @@ export default function VendasFormPage(props) {
       >
         {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => {
           return (
+            
             <Form onSubmit={handleSubmit}>
+
               {/* Campos do form */}
               <Row className='mb-2'>
                 <Form.Group as={Col}>

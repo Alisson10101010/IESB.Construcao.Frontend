@@ -68,7 +68,7 @@ export default function FornecedorPage() {
 
                 <td className='text-center'>
                   {/* Botões das ações */}
-                  <Button className='me-2' href={`/fornecedores/form?id=${fornecedor.id}`}><FaPen /></Button>
+                  <Button className='me-2' href={`/fornecedor/form?id=${fornecedor.id}`}><FaPen /></Button>
                   <Button variant='danger' onClick={() => excluir(fornecedor)}><FaTrash /></Button>
                 </td>
               </tr>

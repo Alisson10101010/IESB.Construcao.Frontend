@@ -66,7 +66,7 @@ export default function FuncionarioPage() {
 
                 <td className='text-center'>
                   {/* Botões das ações */}
-                  <Button className='me-2' href={`/funcionario/form?id=${funcionario.id}`}><FaPen /></Button>
+                  <Button className='me-2' href={`/funcionarios/form?id=${funcionario.id}`}><FaPen /></Button>
                   <Button variant='danger' onClick={() => excluir(funcionario)}><FaTrash /></Button>
                 </td>
               </tr>
