@@ -1,5 +1,5 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
-import { FaUsers, FaWarehouse, FaBoxOpen, FaStoreAlt, FaTruck } from "react-icons/fa";
+import { FaUsers, FaWarehouse, FaBoxOpen, FaStoreAlt, FaTruck, FaShoppingCart  } from "react-icons/fa";
 
 export default function Pagina({ titulo, children }) {
   return (
@@ -29,8 +29,9 @@ export default function Pagina({ titulo, children }) {
                 <FaTruck className="me-2" /> Fornecedores
               </Nav.Link>
               <Nav.Link href="/Sales" className="nav-link-custom">
-                <FaTruck className="me-2" /> Controle de Vendas
-              </Nav.Link>
+             <FaShoppingCart className="me-2" /> Controle de Vendas
+               </Nav.Link>
+
             </Nav>
           </Navbar.Collapse>
         </Container>
