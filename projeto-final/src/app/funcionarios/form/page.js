@@ -10,32 +10,31 @@ import * as Yup from 'yup'
 
 export default function FuncionarioFormPage(props) {
 
-  // router -> hook para navegação de telas
+  // navegação de telas
   const router = useRouter()
 
   // Buscar a lista de funcionários no localStorage, se não existir, inicializa uma lista vazia
   const funcionarios = JSON.parse(localStorage.getItem('funcionarios')) || []
 
-  // Recuperando id para edição
   const id = props.searchParams.id
   console.log(props.searchParams.id)
-  // Buscar na lista o funcionário com o ID recebido no parametro
+
   const funcionarioEditado = funcionarios.find(item => item.id == id)
   console.log(funcionarioEditado)
 
-  // Função para salvar os dados do form
   function salvar(dados) {
-    // Se funcionarioEditado existe, mudar os dados e gravar no localStorage
+
     if (funcionarioEditado) {
       Object.assign(funcionarioEditado, dados)
-      // Substitui a lista antiga pela nova no localStorage
+
       localStorage.setItem('funcionarios', JSON.stringify(funcionarios))
     } else {
       // Se funcionarioEditado não existe, é criação de um novo
-      // Gerar um ID (Identificador único)
+
       dados.id = v4()
       // Adiciona o novo funcionário na lista de funcionários
       funcionarios.push(dados)
+      
       // Substitui a lista antiga pela nova no localStorage
       localStorage.setItem('funcionarios', JSON.stringify(funcionarios))
     }

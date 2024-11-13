@@ -8,21 +8,18 @@ import { FaArrowLeft, FaCheck } from "react-icons/fa"
 import { v4 } from 'uuid'
 import * as Yup from 'yup'
 
-
 function isPlural(nome) {
   return nome.trim().endsWith('s');
 }
+
 
 export default function ClienteFormPage(props) {
   const router = useRouter();
   const clientes = JSON.parse(localStorage.getItem('clientes')) || [];
   const id = props.searchParams.id;
   const clienteEditado = clientes.find(item => item.id == id);
-  
-  
-  const produto = "Clientes"; 
 
-  
+  const produto = "Clientes"; 
   const pluralOuSingular = isPlural(produto) ? 'clientes' : 'cliente';
   const pluralOuSingularCaps = pluralOuSingular.charAt(0).toUpperCase() + pluralOuSingular.slice(1);
 
@@ -48,7 +45,7 @@ export default function ClienteFormPage(props) {
     telefone: '',
     email: '',
     status: '',
-    primeiracompra: '',
+    primeiraCompra: '', 
   };
 
   const validationSchema = Yup.object().shape({
@@ -59,7 +56,7 @@ export default function ClienteFormPage(props) {
     telefone: Yup.string().required("Campo obrigatório"),
     email: Yup.string().email("Email inválido").required("Campo obrigatório"),
     status: Yup.string().required("Campo obrigatório"),
-    primeiracompra: Yup.date().required("Campo obrigatório"),
+    primeiraCompra: Yup.date().required("Campo obrigatório"), 
   });
 
   return (
@@ -71,7 +68,7 @@ export default function ClienteFormPage(props) {
       >
         {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (
           <Form onSubmit={handleSubmit}>
-            {/* Campos do Formulário */}
+
             <Row className='mb-2'>
               <Form.Group as={Col}>
                 <Form.Label>{`Nome do ${pluralOuSingularCaps}:`}</Form.Label>

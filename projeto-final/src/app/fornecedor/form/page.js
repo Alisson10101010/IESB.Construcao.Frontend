@@ -10,33 +10,26 @@ import * as Yup from 'yup'
 
 export default function FornecedorFormPage(props) {
 
-  // router -> hook para navegação de telas
+  // para navegação de telas
   const router = useRouter()
 
-  // Buscar a lista de fornecedores no localStorage, se não existir, inicializa uma lista vazia
   const fornecedores = JSON.parse(localStorage.getItem('fornecedores')) || []
-
-  // Recuperando id para edição
   const id = props.searchParams.id
   console.log(props.searchParams.id)
-  // Buscar na lista o fornecedor com o ID recebido no parametro
+
   const fornecedorEditado = fornecedores.find(item => item.id == id)
   console.log(fornecedorEditado)
 
-  // Função para salvar os dados do form
   function salvar(dados) {
-    // Se fornecedorEditado existe, mudar os dados e gravar no localStorage
+
     if (fornecedorEditado) {
       Object.assign(fornecedorEditado, dados)
-      // Substitui a lista antiga pela nova no localStorage
+
       localStorage.setItem('fornecedores', JSON.stringify(fornecedores))
     } else {
-      // Se fornecedorEditado não existe, é criação de um novo
-      // Gerar um ID (Identificador único)
+
       dados.id = v4()
-      // Adiciona o novo fornecedor na lista de fornecedores
       fornecedores.push(dados)
-      // Substitui a lista antiga pela nova no localStorage
       localStorage.setItem('fornecedores', JSON.stringify(fornecedores))
     }
 
@@ -44,7 +37,6 @@ export default function FornecedorFormPage(props) {
     router.push("/fornecedor")
   }
 
-  // Campos do form e valores iniciais (default)
   const initialValues = {
     nome: '',
     cnpj: '',
@@ -56,7 +48,7 @@ export default function FornecedorFormPage(props) {
     status: '',
   }
 
-  // Esquema de validação com Yup
+  // preenchidos corretamente com dados válidos
   const validationSchema = Yup.object().shape({
     nome: Yup.string().required("Campo obrigatório"),
     cnpj: Yup.string().required("Campo obrigatório"),
@@ -205,7 +197,6 @@ export default function FornecedorFormPage(props) {
                 </Form.Group>
               </Row>
 
-              {/* Botões */}
               <Form.Group className='text-end'>
                 <Button className='me-2' href='/fornecedor'><FaArrowLeft /> Voltar</Button>
                 <Button type='submit' variant='success'><FaCheck /> Enviar</Button>

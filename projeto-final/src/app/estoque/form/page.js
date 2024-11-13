@@ -12,20 +12,18 @@ export default function EstoqueFormPage(props) {
 
   const router = useRouter()
 
-  // Buscar a lista de itens no estoque no localStorage, se não existir, inicializa uma lista vazia
   const estoque = JSON.parse(localStorage.getItem('estoque')) || []
 
-  // Recuperando id para edição
+  // Recuperando 
   const id = props.searchParams.id
 
-  // Buscar na lista o item com o ID recebido no parametro
   const itemEditado = estoque.find(item => item.id == id)
 
-  // Função para salvar os dados do form
+  // Função para salvar os dados 
   function salvar(dados) {
     if (itemEditado) {
       Object.assign(itemEditado, dados)
-      // Substitui a lista antiga pela nova no localStorage
+
       localStorage.setItem('estoque', JSON.stringify(estoque))
     } else {
       dados.id = v4()
@@ -59,7 +57,7 @@ export default function EstoqueFormPage(props) {
     status: '',
   }
 
-  // Esquema de validação com Yup
+  // Esquema de validação 
   const validationSchema = Yup.object().shape({
     nome: Yup.string().required("Campo obrigatório"),
     descricao: Yup.string().required("Campo obrigatório"),

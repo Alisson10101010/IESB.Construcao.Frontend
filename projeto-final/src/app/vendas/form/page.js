@@ -12,10 +12,8 @@ export default function VendasFormPage(props) {
 
   const router = useRouter()
 
-  // Buscar a lista de vendas 
   const vendas = JSON.parse(localStorage.getItem('vendas')) || []
 
-  // Recuperando id para edição
   const id = props.searchParams.id
 
   // Buscar na lista a venda com o ID recebido no parametro
@@ -214,7 +212,6 @@ export default function VendasFormPage(props) {
                 </Form.Group>
               </Row>
 
-              {/* Botões */}
               <Form.Group className='text-end'>
                 <Button className='me-2' href='/vendas'><FaArrowLeft /> Voltar</Button>
                 <Button type='submit' variant='success'><FaCheck /> Enviar</Button>

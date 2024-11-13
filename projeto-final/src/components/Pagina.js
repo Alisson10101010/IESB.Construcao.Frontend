@@ -1,5 +1,8 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { FaUsers, FaWarehouse, FaBoxOpen, FaStoreAlt, FaTruck, FaShoppingCart  } from "react-icons/fa";
+/* Icons */
+
+
 
 export default function Pagina({ titulo, children }) {
   return (
@@ -43,7 +46,7 @@ export default function Pagina({ titulo, children }) {
         <h1>{titulo}</h1>
       </div>
 
-      {/*  Página */}
+      {/*  personalizar a aparência */}
 
       <Container className="mt-4">
         {children}

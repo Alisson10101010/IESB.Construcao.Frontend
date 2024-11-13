@@ -9,24 +9,16 @@ export default function EstoquePage() {
 
   const [estoque, setEstoque] = useState([])
 
-  // Faz alguma coisa quando o usuário acessa a tela
   useEffect(() => {
-    // Busca a lista do localStorage, se não existir, inicia uma vazia
     const estoqueLocalStorage = JSON.parse(localStorage.getItem("estoque")) || []
-    // guarda a lista no estado estoque
     setEstoque(estoqueLocalStorage)
     console.log(estoqueLocalStorage)
   }, [])
 
-  // Função para exclusão do item
   function excluir(item) {
-    // Confirma com o usuário a exclusão
     if (window.confirm(`Deseja realmente excluir o item ${item.nome}?`)) {
-      // filtra a lista antiga removendo o item recebido
       const novaLista = estoque.filter(it => it.id !== item.id)
-      // grava no localStorage a nova lista
       localStorage.setItem('estoque', JSON.stringify(novaLista))
-      // grava a nova lista no estado para renderizar na tela
       setEstoque(novaLista)
       alert("Item do estoque excluído com sucesso!")
     }
@@ -67,7 +59,7 @@ export default function EstoquePage() {
                 <td>{item.status}</td>
 
                 <td className='text-center'>
-                  {/* Botões das ações */}
+
                   <Button className='me-2' href={`/estoque/form?id=${item.id}`}><FaPen /></Button>
                   <Button variant='danger' onClick={() => excluir(item)}><FaTrash /></Button>
                 </td>

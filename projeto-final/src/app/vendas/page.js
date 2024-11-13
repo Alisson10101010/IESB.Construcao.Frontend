@@ -9,9 +9,8 @@ export default function VendasPage() {
 
   const [vendas, setVendas] = useState([])
 
-  // Interação quando o usuário acessa a tela
   useEffect(() => {
-    // Busca a lista do localStorage
+
     const vendasLocalStorage = JSON.parse(localStorage.getItem("vendas")) || []
     
     setVendas(vendasLocalStorage)
@@ -38,7 +37,6 @@ export default function VendasPage() {
         <Button href='/vendas/form'><FaPlusCircle /> Nova Venda</Button>
       </div>
 
-      {/* Tabela com as Vendas */}
       <Table striped bordered hover>
         <thead>
           <tr>

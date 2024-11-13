@@ -9,24 +9,18 @@ export default function ClientePage() {
 
   const [clientes, setClientes] = useState([])
 
-  // Faz alguma coisa quando o usuário acessa a tela
   useEffect(() => {
-    // Busca a lista do localStorage, se não existir, inicia uma vazia
     const clientesLocalStorage = JSON.parse(localStorage.getItem("clientes")) || []
-    // guarda a lista no estado clientes
-    setClientes(clientesLocalStorage)
+    // guarda a lista 
     console.log(clientesLocalStorage)
   }, [])
 
-  // Função para exclusão do item
+  //  exclusão 
   function excluir(cliente) {
-    // Confirma com o usuário a exclusão
+
     if (window.confirm(`Deseja realmente excluir o cliente ${cliente.nome}?`)) {
-      // filtra a lista antiga removendo o cliente recebido
       const novaLista = clientes.filter(item => item.id !== cliente.id)
-      // grava no localStorage a nova lista
       localStorage.setItem('clientes', JSON.stringify(novaLista))
-      // grava a nova lista no estado para renderizar na tela
       setClientes(novaLista)
       alert("Cliente excluído com sucesso!")
     }
@@ -66,7 +60,7 @@ export default function ClientePage() {
                 <td>{cliente.primeiracompra}</td>
 
                 <td className='text-center'>
-                  {/* Botões das ações */}
+
                   <Button className='me-2' href={`/clientes/form?id=${cliente.id}`}><FaPen /></Button>
                   <Button variant='danger' onClick={() => excluir(cliente)}><FaTrash /></Button>
                 </td>

@@ -1,11 +1,12 @@
-'use client'
+'use client';
 
-import Pagina from '../components/Pagina'
+
+import Pagina from '@/components/Pagina';
 import React from 'react';
 import { Box, Card, Typography, Grid, Avatar } from '@mui/material';
 import { Bar, Pie } from 'react-chartjs-2';
 
-// Importe os elementos necessários do Chart.js
+// importa os componentes essenciais, graficos
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -17,7 +18,7 @@ import {
   ArcElement,
 } from 'chart.js';
 
-// Registrando os componentes necessários do Chart.js
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -29,6 +30,7 @@ ChartJS.register(
 );
 
 const Sales = () => {
+
   // Dados de vendas por tipo de peça de roupa
   const dataBar = {
     labels: ['Camisetas', 'Calças', 'Jaquetas', 'Tênis'],
@@ -56,74 +58,78 @@ const Sales = () => {
   };
 
   return (
-    <Box p={3} maxWidth="lg" mx="auto">
-      <Typography variant="h4" gutterBottom color="primary" textAlign="center">
-        Controle de Vendas
-      </Typography>
+    <Pagina titulo="Controle de Vendas"> {/* Incluindo o componente Pagina para o menu */}
+      <Box p={3} maxWidth="lg" mx="auto">
+        <Typography variant="h4" gutterBottom color="primary" textAlign="center">
+          Controle de Vendas
+        </Typography>
 
-      <Grid container spacing={4} justifyContent="center">
-        {/* Informações adicionais de vendas */}
-        <Grid item xs={12} md={4}>
-          <Card style={{ backgroundColor: '#f5f5f5', padding: '16px' }}>
-            <Box display="flex" alignItems="center">
-              <Avatar sx={{ bgcolor: '#FF6384', marginRight: '16px' }}>R$</Avatar>
-              <Box>
-                <Typography variant="h6">Vendas Totais</Typography>
-                <Typography variant="subtitle1">R$ 12.500,00</Typography>
+        <Grid container spacing={4} justifyContent="center">
+
+          {/* Informações adicionais de vendas */}
+          
+          <Grid item xs={12} md={4}>
+            <Card style={{ backgroundColor: '#f5f5f5', padding: '16px' }}>
+              <Box display="flex" alignItems="center">
+                <Avatar sx={{ bgcolor: '#FF6384', marginRight: '16px' }}>R$</Avatar>
+                <Box>
+                  <Typography variant="h6">Vendas Totais</Typography>
+                  <Typography variant="subtitle1">R$ 12.500,00</Typography>
+                </Box>
               </Box>
-            </Box>
-          </Card>
-        </Grid>
+            </Card>
+          </Grid>
 
-        <Grid item xs={12} md={4}>
-          <Card style={{ backgroundColor: '#f5f5f5', padding: '16px' }}>
-            <Box display="flex" alignItems="center">
-              <Avatar sx={{ bgcolor: '#36A2EB', marginRight: '16px' }}>💼</Avatar>
-              <Box>
-                <Typography variant="h6">Pedidos Concluídos</Typography>
-                <Typography variant="subtitle1">180 Pedidos</Typography>
+          <Grid item xs={12} md={4}>
+            <Card style={{ backgroundColor: '#f5f5f5', padding: '16px' }}>
+              <Box display="flex" alignItems="center">
+                <Avatar sx={{ bgcolor: '#36A2EB', marginRight: '16px' }}>💼</Avatar>
+                <Box>
+                  <Typography variant="h6">Pedidos Concluídos</Typography>
+                  <Typography variant="subtitle1">180 Pedidos</Typography>
+                </Box>
               </Box>
-            </Box>
-          </Card>
-        </Grid>
+            </Card>
+          </Grid>
 
-        <Grid item xs={12} md={4}>
-          <Card style={{ backgroundColor: '#f5f5f5', padding: '16px' }}>
-            <Box display="flex" alignItems="center">
-              <Avatar sx={{ bgcolor: '#FFCE56', marginRight: '16px' }}>👚</Avatar>
-              <Box>
-                <Typography variant="h6">Peça Mais Vendida</Typography>
-                <Typography variant="subtitle1">Camisetas</Typography>
+          <Grid item xs={12} md={4}>
+            <Card style={{ backgroundColor: '#f5f5f5', padding: '16px' }}>
+              <Box display="flex" alignItems="center">
+                <Avatar sx={{ bgcolor: '#FFCE56', marginRight: '16px' }}>👚</Avatar>
+                <Box>
+                  <Typography variant="h6">Peça Mais Vendida</Typography>
+                  <Typography variant="subtitle1">Camisetas</Typography>
+                </Box>
               </Box>
-            </Box>
-          </Card>
-        </Grid>
+            </Card>
+          </Grid>
 
-        {/* Gráfico de Barras Menor */}
-        <Grid item xs={12} md={6}>
-          <Card style={{ backgroundColor: '#e3f2fd', padding: '16px' }}>
-            <Typography variant="h6" color="secondary" textAlign="center" gutterBottom>
-              Vendas por Tipo de Peça
-            </Typography>
-            <Box height={200}>
-              <Bar data={dataBar} options={{ maintainAspectRatio: false }} />
-            </Box>
-          </Card>
-        </Grid>
+          {/* Gráfico de Barras Menor */}
+          <Grid item xs={12} md={6}>
+            <Card style={{ backgroundColor: '#e3f2fd', padding: '16px' }}>
+              <Typography variant="h6" color="secondary" textAlign="center" gutterBottom>
+                Vendas por Tipo de Peça
+              </Typography>
+              <Box height={200}>
+                <Bar data={dataBar} options={{ maintainAspectRatio: false }} />
+              </Box>
+            </Card>
+          </Grid>
 
-        {/* Gráfico de Pizza Menor */}
-        <Grid item xs={12} md={6}>
-          <Card style={{ backgroundColor: '#e3f2fd', padding: '16px' }}>
-            <Typography variant="h6" color="secondary" textAlign="center" gutterBottom>
-              Proporção de Vendas por Peça
-            </Typography>
-            <Box height={200}>
-              <Pie data={dataPie} options={{ maintainAspectRatio: false }} />
-            </Box>
-          </Card>
+          {/* Gráfico de Pizza Menor */}
+          <Grid item xs={12} md={6}>
+            <Card style={{ backgroundColor: '#e3f2fd', padding: '16px' }}>
+              <Typography variant="h6" color="secondary" textAlign="center" gutterBottom>
+                Proporção de Vendas por Peça
+              </Typography>
+              <Box height={200}>
+                <Pie data={dataPie} options={{ maintainAspectRatio: false }} />
+              </Box>
+            </Card>
+          </Grid>
         </Grid>
-      </Grid>
-    </Box>
+      </Box>
+    </Pagina>
   );
 };
 

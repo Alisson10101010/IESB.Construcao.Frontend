@@ -9,24 +9,23 @@ export default function FornecedorPage() {
 
   const [fornecedores, setFornecedores] = useState([])
 
-  // Faz alguma coisa quando o usuário acessa a tela
+  // usada no componente, renderizar uma tabela ou lista de fornecedores.
   useEffect(() => {
-    // Busca a lista do localStorage, se não existir, inicia uma vazia
+
     const fornecedoresLocalStorage = JSON.parse(localStorage.getItem("fornecedores")) || []
-    // guarda a lista no estado fornecedores
+
     setFornecedores(fornecedoresLocalStorage)
     console.log(fornecedoresLocalStorage)
   }, [])
 
-  // Função para exclusão do item
+  // exclusão 
   function excluir(fornecedor) {
-    // Confirma com o usuário a exclusão
+
     if (window.confirm(`Deseja realmente excluir o fornecedor ${fornecedor.nome}?`)) {
-      // filtra a lista antiga removendo o fornecedor recebido
+
       const novaLista = fornecedores.filter(item => item.id !== fornecedor.id)
-      // grava no localStorage a nova lista
+
       localStorage.setItem('fornecedores', JSON.stringify(novaLista))
-      // grava a nova lista no estado para renderizar na tela
       setFornecedores(novaLista)
       alert("Fornecedor excluído com sucesso!")
     }
