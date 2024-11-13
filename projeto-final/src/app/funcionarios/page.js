@@ -56,7 +56,7 @@ export default function FuncionarioPage() {
                 <td>{funcionario.cargo}</td>
                 <td>{funcionario.faixaEtaria}</td>
                 <td>{funcionario.tipoContrato}</td>
-                <td>{funcionario.salario}</td>
+                <td>R$ {funcionario.salario}</td>
                 <td>{funcionario.status}</td>
 
                 <td className='text-center'>

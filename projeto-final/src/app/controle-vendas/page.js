@@ -60,9 +60,7 @@ const Sales = () => {
   return (
     <Pagina titulo="Controle de Vendas"> {/* Incluindo o componente Pagina para o menu */}
       <Box p={3} maxWidth="lg" mx="auto">
-        <Typography variant="h4" gutterBottom color="primary" textAlign="center">
-          Controle de Vendas
-        </Typography>
+
 
         <Grid container spacing={4} justifyContent="center">
 

@@ -31,7 +31,7 @@ export default function Pagina({ titulo, children }) {
               <Nav.Link href="/fornecedor" className="nav-link-custom">
                 <FaTruck className="me-2" /> Fornecedores
               </Nav.Link>
-              <Nav.Link href="/Sales" className="nav-link-custom">
+              <Nav.Link href="/controle-vendas" className="nav-link-custom">
              <FaShoppingCart className="me-2" /> Controle de Vendas
                </Nav.Link>
 
